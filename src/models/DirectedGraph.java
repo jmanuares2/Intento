@@ -4,25 +4,25 @@ import java.util.List;
 import java.util.ArrayList;
 public class DirectedGraph {
     private List<Node> nodes;
-    private List<Edge> edges;
+    private List<DirectedEdge> edges;
 
-    public DirectedGraph(List<Node> nodes, List<Edge> edges) {
+    public DirectedGraph(List<Node> nodes, List<DirectedEdge> edges) {
         this.nodes = new ArrayList<Node>();
-        this.edges = new ArrayList<Edge>();
+        this.edges = new ArrayList<DirectedEdge>();
         for (Node nodo : nodes) {
             if (verificarNodos(nodo)) {
                 this.nodes.add(nodo);
             }
         }
 
-        for (Edge edge : edges) {
+        for (DirectedEdge edge : edges) {
             if (verificarPertenencia(edge)) {
                 this.edges.add(edge);
             }
         }
     }
 
-    private boolean verificarPertenencia(Edge edge) {
+    private boolean verificarPertenencia(DirectedEdge edge) {
         boolean flagExisteConexionNodo1 = false;
         boolean flagExisteConexionNodo2 = false;
         for (Node nodo : nodes) {
@@ -56,7 +56,7 @@ public class DirectedGraph {
         return nodes;
     }
 
-    public List<Edge> getEdges() {
+    public List<DirectedEdge> getEdges() {
         return edges;
     }
 
@@ -68,7 +68,7 @@ public class DirectedGraph {
         }
     }
 
-    public void addEdge(Edge edge) {
+    public void addEdge(DirectedEdge edge) {
         if(!verificarNodos(edge.getSource())) {
             System.out.println("No se puede agregar la arista, ya que el inicio no existe en el grafo.");
         }else if(!verificarNodos(edge.getDestination())) {
@@ -83,7 +83,7 @@ public class DirectedGraph {
         String resultado = "";
         resultado += "Grafo:\n";
         resultado += "Aristas:\n";;
-        for (Edge edge : edges) {
+        for (DirectedEdge edge : edges) {
             resultado += edge.toString() + "\n";
         }
         return resultado;

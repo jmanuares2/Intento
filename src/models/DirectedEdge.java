@@ -1,10 +1,10 @@
 package Intento.src.models;
 
-public class Edge {
+public class DirectedEdge {
     private Node source;
     private Node destination;
 
-    public Edge(Node source, Node destination) {
+    public DirectedEdge(Node source, Node destination) {
         this.source = source;
         this.destination = destination;
     }
