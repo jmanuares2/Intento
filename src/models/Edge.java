@@ -15,4 +15,10 @@ public class Edge {
     public Node getDestination() {
         return destination;
     }
+    public String toString() {
+        return "{" +
+                "inicio=" + source +
+                ", destino=" + destination +
+                '}';
+    }
 }

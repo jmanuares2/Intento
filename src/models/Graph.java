@@ -1,12 +1,14 @@
 package Intento.src.models;
 
 import java.util.List;
-
+import java.util.ArrayList;
 public class Graph {
     private List<Node> nodes;
     private List<Edge> edges;
 
     public Graph(List<Node> nodes, List<Edge> edges) {
+        this.nodes = new ArrayList<Node>();
+        this.edges = new ArrayList<Edge>();
         for (Node nodo : nodes) {
             if (verificarNodos(nodo)) {
                 this.nodes.add(nodo);
@@ -41,7 +43,7 @@ public class Graph {
             return false;
         }else{
             for (Node nodoExistente : this.nodes) {
-                if (nodo.getName().equals(nodoExistente.getName())) {
+                if (nodo.getName() == nodoExistente.getName()) {
                     return false;
                 }
             }
@@ -75,5 +77,15 @@ public class Graph {
             this.edges.add(edge);
         }
         
+    }
+
+    public String toString() {
+        String resultado = "";
+        resultado += "Grafo:\n";
+        resultado += "Aristas:\n";;
+        for (Edge edge : edges) {
+            resultado += edge.toString() + "\n";
+        }
+        return resultado;
     }
 }
