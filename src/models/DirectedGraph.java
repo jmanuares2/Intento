@@ -2,11 +2,11 @@ package Intento.src.models;
 
 import java.util.List;
 import java.util.ArrayList;
-public class Graph {
+public class DirectedGraph {
     private List<Node> nodes;
     private List<Edge> edges;
 
-    public Graph(List<Node> nodes, List<Edge> edges) {
+    public DirectedGraph(List<Node> nodes, List<Edge> edges) {
         this.nodes = new ArrayList<Node>();
         this.edges = new ArrayList<Edge>();
         for (Node nodo : nodes) {
