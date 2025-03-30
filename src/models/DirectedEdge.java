@@ -21,4 +21,9 @@ public class DirectedEdge {
                 ", destination=" + destination +
                 '}';
     }
+
+    public DirectedEdge copyEdge(){
+        DirectedEdge copy = new DirectedEdge(this.source.copyNode(), this.destination.copyNode());
+        return copy;
+    }
 }

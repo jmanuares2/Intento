@@ -109,4 +109,38 @@ public class DirectedGraph {
         return weight;
     }
 
+    public boolean isCyclic() {
+        List<DirectedEdge> edgesCopy = copyEdges();
+        List<DirectedEdge> edgesVisited = new ArrayList<DirectedEdge>();
+        for (DirectedEdge edge : edgesCopy) {
+            if(checkCycles(edgesCopy, edge, edgesVisited)){
+                return true;
+            }
+        }
+        
+        return false;
+    }
+    private boolean checkCycles(List<DirectedEdge> edgesCopy, DirectedEdge edge, List<DirectedEdge> edgesVisited){
+        if(compareNodes(edge.getSource(), edge.getDestination())) return true;
+
+        for (DirectedEdge edgeVisited : edgesVisited){
+            if(compareNodes(edge.getDestination(),edgeVisited.getSource())){
+                return true;
+            } 
+        }
+        edgesVisited.add(edge);
+        return false;
+    }
+    private boolean compareNodes(Node node1, Node node2){
+        if(node1.getName() == node2.getName() && node1.getValue() == node2.getValue()) return true;
+        return false;
+    }
+
+    private List<DirectedEdge> copyEdges(){
+        List<DirectedEdge> copy = new ArrayList<DirectedEdge>();
+        for(DirectedEdge edge : this.edges){
+            copy.add(edge.copyEdge());
+        }
+        return copy;
+    }
 }

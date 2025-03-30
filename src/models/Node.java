@@ -27,5 +27,8 @@ public class Node {
                 ", value=" + value +
                 '}';
     }
+    public Node copyNode(){
+        return new Node(this.name, this.value);
+    }
 
 }
