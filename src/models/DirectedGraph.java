@@ -110,17 +110,16 @@ public class DirectedGraph {
     }
 
     public boolean isCyclic() {
-        List<DirectedEdge> edgesCopy = copyEdges();
         List<DirectedEdge> edgesVisited = new ArrayList<DirectedEdge>();
-        for (DirectedEdge edge : edgesCopy) {
-            if(checkCycles(edgesCopy, edge, edgesVisited)){
+        for (DirectedEdge edge : this.edges) {
+            if(checkCycles(edge, edgesVisited)){
                 return true;
             }
         }
         
         return false;
     }
-    private boolean checkCycles(List<DirectedEdge> edgesCopy, DirectedEdge edge, List<DirectedEdge> edgesVisited){
+    private boolean checkCycles(DirectedEdge edge, List<DirectedEdge> edgesVisited){
         if(compareNodes(edge.getSource(), edge.getDestination())) return true;
 
         for (DirectedEdge edgeVisited : edgesVisited){
@@ -133,6 +132,11 @@ public class DirectedGraph {
     }
     private boolean compareNodes(Node node1, Node node2){
         if(node1.getName() == node2.getName() && node1.getValue() == node2.getValue()) return true;
+        return false;
+    }
+
+    public boolean isCyclicDFS(){
+        //A completar
         return false;
     }
 

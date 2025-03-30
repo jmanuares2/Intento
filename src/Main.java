@@ -23,7 +23,7 @@ public class Main {
         DirectedEdge directedEdge2 = new DirectedEdge(node2, node3);
         DirectedEdge directedEdge3 = new DirectedEdge(node3, node4);
         DirectedEdge directedEdge4 = new DirectedEdge(node4, node1);
-        DirectedEdge directedEdge5 = new DirectedEdge(node5, node6);
+        DirectedEdge directedEdge5 = new DirectedEdge(node1, node1);
 
         nodes.add(node1);
         nodes.add(node2);
@@ -35,13 +35,12 @@ public class Main {
         aristas.add(directedEdge1);
         aristas.add(directedEdge2);
         aristas.add(directedEdge3);
-        aristas.add(directedEdge4);
-        aristas.add(directedEdge5);
+        //aristas.add(directedEdge4);
 
         DirectedGraph directedGraph = new DirectedGraph(nodes, aristas);
-        System.out.println(directedGraph);
 
-        directedGraph.addEdge(directedEdge5, true);
+        //directedGraph.addEdge(directedEdge5, true);
         System.out.println(directedGraph);
+        System.out.println(directedGraph.isCyclic());
     }
 }
