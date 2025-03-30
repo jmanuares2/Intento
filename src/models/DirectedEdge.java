@@ -17,8 +17,8 @@ public class DirectedEdge {
     }
     public String toString() {
         return "{" +
-                "inicio=" + source +
-                ", destino=" + destination +
+                "source=" + source +
+                ", destination=" + destination +
                 '}';
     }
 }

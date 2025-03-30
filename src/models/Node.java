@@ -23,8 +23,8 @@ public class Node {
     }
     public String toString() {
         return "{" +
-                "nombre='" + name + '\'' +
-                ", valor=" + value +
+                "name='" + name + '\'' +
+                ", value=" + value +
                 '}';
     }
 

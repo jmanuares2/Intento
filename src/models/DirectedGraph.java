@@ -3,47 +3,48 @@ package Intento.src.models;
 import java.util.List;
 import java.util.ArrayList;
 public class DirectedGraph {
+    //Disconnected Weighted Digraph
     private List<Node> nodes;
     private List<DirectedEdge> edges;
 
     public DirectedGraph(List<Node> nodes, List<DirectedEdge> edges) {
         this.nodes = new ArrayList<Node>();
         this.edges = new ArrayList<DirectedEdge>();
-        for (Node nodo : nodes) {
-            if (verificarNodos(nodo)) {
-                this.nodes.add(nodo);
+        for (Node node : nodes) {
+            if (checkNode(node)) {
+                this.nodes.add(node);
             }
         }
 
         for (DirectedEdge edge : edges) {
-            if (verificarPertenencia(edge)) {
+            if (checkEdge(edge)) {
                 this.edges.add(edge);
             }
         }
     }
 
-    private boolean verificarPertenencia(DirectedEdge edge) {
-        boolean flagExisteConexionNodo1 = false;
-        boolean flagExisteConexionNodo2 = false;
+    private boolean checkEdge(DirectedEdge edge) {
+        boolean flagConectNode1 = false;
+        boolean flagConectNode2 = false;
         for (Node nodo : nodes) {
-            if (!flagExisteConexionNodo1 && (nodo == edge.getDestination() || nodo == edge.getSource())) {
-                flagExisteConexionNodo1 = true;
-            }else if (!flagExisteConexionNodo2 && (nodo == edge.getSource() || nodo == edge.getDestination())) {
-                flagExisteConexionNodo2 = true;
+            if (!flagConectNode1 && (nodo == edge.getDestination() || nodo == edge.getSource())) {
+                flagConectNode1 = true;
+            }else if (!flagConectNode2 && (nodo == edge.getSource() || nodo == edge.getDestination())) {
+                flagConectNode2 = true;
             }
-            if(flagExisteConexionNodo1 && flagExisteConexionNodo2) {
+            if(flagConectNode1 && flagConectNode2) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean verificarNodos(Node nodo) {
-        if (nodo == null) {
+    private boolean checkNode(Node node) {
+        if (node == null) {
             return false;
         }else{
-            for (Node nodoExistente : this.nodes) {
-                if (nodo.getName() == nodoExistente.getName()) {
+            for (Node graphNode : this.nodes) {
+                if (node.getName() == graphNode.getName()) {
                     return false;
                 }
             }
@@ -61,31 +62,51 @@ public class DirectedGraph {
     }
 
     public void addNode(Node node) {
-        if(verificarNodos(node)) {
+        if(checkNode(node)) {
             this.nodes.add(node);
         }else {
             System.out.println("No se puede agregar el nodo, ya que ya existe en el grafo o es nulo.");
         }
     }
 
-    public void addEdge(DirectedEdge edge) {
-        if(!verificarNodos(edge.getSource())) {
-            System.out.println("No se puede agregar la arista, ya que el inicio no existe en el grafo.");
-        }else if(!verificarNodos(edge.getDestination())) {
-            System.out.println("No se puede agregar la arista, ya que el destino no existe en el grafo.");
-        }else{
-            this.edges.add(edge);
+    public void addEdge(DirectedEdge edge){
+        addEdge(edge, false);
+    }
+    public void addEdge(DirectedEdge edge, boolean addNodes) {
+        if(checkNode(edge.getSource())) {
+            if(addNodes) addNode(edge.getSource());
+            else{ 
+                System.out.println("No se puede agregar la arista, ya que el inicio no existe en el grafo.");
+                return;
+            }
         }
-        
+        if(checkNode(edge.getDestination())) {
+            if(addNodes) addNode(edge.getDestination());
+            else {
+                System.out.println("No se puede agregar la arista, ya que el destino no existe en el grafo.");
+                return;
+            }
+        }
+        this.edges.add(edge);
     }
 
     public String toString() {
-        String resultado = "";
-        resultado += "Grafo:\n";
-        resultado += "Aristas:\n";;
+        String result = "";
+        result += "Grafo:\n";
+        result += "Aristas:\n";;
         for (DirectedEdge edge : edges) {
-            resultado += edge.toString() + "\n";
+            result += edge.toString() + "\n";
         }
-        return resultado;
+        result += "Peso: " + getWeight();
+        return result;
     }
+
+    public int getWeight(){
+        int weight = 0;
+        for (Node node : this.nodes){
+            weight += node.getValue();
+        }
+        return weight;
+    }
+
 }
