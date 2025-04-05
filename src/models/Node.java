@@ -22,10 +22,7 @@ public class Node {
         this.value = value;
     }
     public String toString() {
-        return "{" +
-                "name='" + name + '\'' +
-                ", value=" + value +
-                '}';
+        return this.name;
     }
     public Node copyNode(){
         return new Node(this.name, this.value);

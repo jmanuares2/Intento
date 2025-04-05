@@ -35,12 +35,13 @@ public class Main {
         aristas.add(directedEdge1);
         aristas.add(directedEdge2);
         aristas.add(directedEdge3);
-        //aristas.add(directedEdge4);
+        aristas.add(directedEdge4);
 
         DirectedGraph directedGraph = new DirectedGraph(nodes, aristas);
 
-        //directedGraph.addEdge(directedEdge5, true);
+        directedGraph.addEdge(directedEdge5);
         System.out.println(directedGraph);
         System.out.println(directedGraph.isCyclic());
+        System.out.println(directedGraph.getAdjacencyList());
     }
 }
